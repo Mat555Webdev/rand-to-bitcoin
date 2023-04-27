@@ -7,21 +7,10 @@ export class ExhangeRatesController {
     
     constructor(readonly exchangeRatesService: ExchangeRatesService) { }
 
-    @Get('bitcoin-to-rand')
+    @Get('get-bitcoin-to-rand')
     //TODO: create type for query
     public async GetBitCoinToRandRate(@Res() res: Response) {
-        var result = await this.exchangeRatesService.oneBitcoinInRands();
-
-        if(!result){
-            res.status(HttpStatus.INTERNAL_SERVER_ERROR).send();
-        }
-
-        res.status(HttpStatus.OK).send(result);
-    }
-
-    @Get('rand-to-bitcoin')
-    public async GetRandToBitCoinRate(@Res() res: Response) {
-        var result = await this.exchangeRatesService.oneRandInBitcoin();
+        var result = await this.exchangeRatesService.getBitcoinToRandExchangeRates();
 
         if(!result){
             res.status(HttpStatus.INTERNAL_SERVER_ERROR).send();

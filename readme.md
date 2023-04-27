@@ -3,7 +3,7 @@
 - Basic application demonstrating knowledge on how to build an 
 application from back to front.
 
-## Minimum requirements for running the app locally: 
+## Recommended environment for running the app locally: 
 
 1. NodeJS (v16.13.1)
 2. NestJS (v9.0.0)

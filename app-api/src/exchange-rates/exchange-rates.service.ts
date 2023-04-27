@@ -3,7 +3,7 @@ import { HttpService } from '@nestjs/axios';
 import { catchError, firstValueFrom } from 'rxjs';
 import { AxiosError } from 'axios';
 import { CoinBaseExchangeRatesResponse } from './models/coin-base-exchange-rates-response-dto';
-import { BtcToRand } from './models/btc-to-rand';
+import { BitcoinToRandExchangeRates } from './models/bitcoin-and-rand-exchange-rates';
 import { SupportedCurrencies } from './enums/SupportedCurrencies';
 
 @Injectable()
@@ -13,23 +13,13 @@ export class ExchangeRatesService {
 
   constructor(readonly httpService: HttpService) {};
 
-  async oneBitcoinInRands(): Promise<BtcToRand> {
+  async getBitcoinToRandExchangeRates(): Promise<BitcoinToRandExchangeRates> {
     const bitcoinExchangeRates = await this.fetchExchangeRatesFromCoinBaseApi(SupportedCurrencies.BTC);
+    const zarExchangeRates = await this.fetchExchangeRatesFromCoinBaseApi(SupportedCurrencies.ZAR);
 
-    const result: BtcToRand = {
-        bitcoinValue: 1,
-        randValue: bitcoinExchangeRates.data.rates[SupportedCurrencies.ZAR]
-    };
-
-    return result;
-  }
-
-  async oneRandInBitcoin(): Promise<BtcToRand> {
-    const bitcoinExchangeRates = await this.fetchExchangeRatesFromCoinBaseApi(SupportedCurrencies.ZAR);
-
-    const result: BtcToRand = {
-        bitcoinValue: bitcoinExchangeRates.data.rates[SupportedCurrencies.BTC],
-        randValue: 1
+    const result: BitcoinToRandExchangeRates = {
+      oneBitcoinConvertedToRands: bitcoinExchangeRates.data.rates[SupportedCurrencies.ZAR],
+      oneRandConvertedToBitcoin: zarExchangeRates.data.rates[SupportedCurrencies.BTC]
     };
 
     return result;

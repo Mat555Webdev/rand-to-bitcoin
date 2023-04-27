@@ -1,0 +1,24 @@
+<div class="content" role="main">
+  <ng-container
+    *ngIf="randToBitcoinExchangeRates$ | async as exchangeRate; else loading">
+    <h1>1 Bitcoin (BTC) = R{{exchangeRate.oneBitcoinConvertedToRands | convertToTwoDecimal}}</h1>
+    <div class="input-container">
+      <mat-form-field class="input">
+        <mat-label>Rand (ZAR)</mat-label>
+        <input
+          matInput
+          [min]="1"
+          type="number"
+          [formControl]="randInputControl"
+        />
+      </mat-form-field>
+
+      <mat-form-field class="input">
+        <mat-label>Bitcoin (BTC)</mat-label>
+        <input matInput type="number" [formControl]="bitcoinControl" />
+      </mat-form-field>
+    </div>
+  </ng-container>
+</div>
+
+<ng-template #loading let-user>Loading...</ng-template>
