@@ -61,6 +61,11 @@ export class RandToBitcoinComponent implements OnDestroy {
     this.randInputControl.valueChanges
       .pipe(takeUntil(this._subscribeUntilSubject))
       .subscribe((randInput) => {
+        if(!randInput || randInput === 0){
+          this.bitcoinControl.patchValue(0);
+          return;
+        }
+        
         var valueInBitcoin = this.randToBitCoinService.calculateBitCoinValueOfRand(randInput);
 
         if(valueInBitcoin)
