@@ -1,7 +1,7 @@
 ## Rand To BitCoin App ##
 
 - Basic application demonstrating knowledge on how to build an 
-application from back to front.
+application from using NestJS and Angular.
 
 ## Recommended environment for running the app locally: 
 
