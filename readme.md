@@ -17,10 +17,17 @@ application from back to front.
 
 The API and the UI need to run alongside one another for the app to function correctly.
 
-- Running the API locally:
+## In order to the the app locally, please ensure the API and UI is running.
+## Running the API locally:
 
-    ## TODO:
+    1. Navigate to `app-api`
+    2. Run `npm install`
+    3. run `npm start`
 
-- Running the UI locally:
+## Running the UI locally:
 
-    ## TODO:
+    1. Navigate to `app-ui`
+    2. Run `npm install`
+    3. run `npm start`
+
+## Navigate to http://localhost:4200
